@@ -1,0 +1,45 @@
+<div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offer" ng-controller="OfferCtrl">
+                <div class="icon-feed pull-left" style="padding-right:10px;"></div>
+                <ul owl-carousel class="owl-carousel owl-theme list-unstyled" owl-options="{items: 1, dots: false, autoplay: true, loop: true}">
+                    <li owl-carousel-item="" ng-repeat="offer in offers">
+                        <a href="{{ offer.url }}">{{ offer.title | limitTo: 60 }} {{ offer.title.length > 60 ? '...' : '' }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6 additional-nav" ng-controller="NavController">
+                <ul ng-if="!isAuthenticated()" class="list-unstyled list-inline pull-right">
+                    <li><a ui-sref="auth.login">Đăng nhập</a></li>
+                    <li><a ui-sref="auth.signup">Đăng ký</a></li>
+                    <li><a ui-sref="auth.reset">Quên mật khẩu?</a></li>
+                </ul>
+                <ul ng-if="isAuthenticated()" class="list-unstyled list-inline pull-right">
+                    <li><a href="account">Quản lý tài khoản</a></li>
+                    <li><a ui-sref="auth.logout">Thoát</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header">
+    <div class="container">
+        <a class="site-logo" href="/">
+            <img src="../assets/images/logos/logo.png" alt="company.website.name">
+        </a>
+
+        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+        <!-- BEGIN CART -->
+
+        <!--END CART -->
+
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation">
+            
+        </div>
+        <!-- END NAVIGATION -->
+    </div>
+</div>

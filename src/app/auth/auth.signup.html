@@ -1,0 +1,68 @@
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="portlet light shadow">
+					<div class="portlet-title">
+						<div class="caption font-green-sharp">
+							<i class="icon-user-follow font-green-sharp"></i>
+							<span class="caption-subject bold uppercase">Đăng ký tài khoản</span>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<form name="registerForm" class="horizontal-form" ng-submit="submit()">
+							<div class="form-body">
+								<div class="form-group">
+									<label for="first_name" class="control-label">
+										Họ của bạn
+										<span class="required">*</span>
+									</label>
+									<input type="text" id="first_name" class="form-control" ng-model="signup.first_name" required>
+								</div>
+
+								<div class="form-group">
+									<label for="last_name" class="control-label">
+										Tên của bạn
+										<span class="required">*</span>
+									</label>
+									<input type="text" id="last_name" class="form-control" ng-model="signup.last_name" required>
+								</div>
+
+								<div class="form-group">
+									<label for="email" class="control-label">
+										Email
+										<span class="required">*</span>
+									</label>
+									<input type="text" id="email" class="form-control" ng-model="signup.email" required>
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="control-label">
+										Mật khẩu
+										<span class="required">*</span>
+									</label>
+									<input type="password" id="password" class="form-control" ng-model="signup.password" required>
+								</div>
+
+								<div class="form-group">
+									<label for="password_confirm" class="control-label">
+										Xác nhận mật khẩu
+										<span class="required">*</span>
+									</label>
+									<input type="password" id="password_confirm" class="form-control" ng-model="signup.password_confirm" required>
+								</div>
+							</div>
+
+							<div class="form-actions text-center">
+								<button type="submit" class="btn blue btn-block" ng-disabled="registerForm.$invalid">Tạo tài khoản</button>
+								<hr>
+								<p>Bạn đã có tài khoản? Bấm vào đây để <a href="login">đăng nhập</a></p>
+								<p>Bạn quên mật khẩu? Bấm vào đây để <a href="reset">tìm lại mật khẩu</a></p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

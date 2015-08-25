@@ -1,0 +1,22 @@
+<div class="top-cart-block">
+  <div class="top-cart-info">
+    <a href="javascript:void(0);" class="top-cart-info-count">{{ total_items }} sản phẩm</a>
+    <a href="javascript:void(0);" class="top-cart-info-value">{{ total_price() }}</a>
+    <i class="fa fa-shopping-cart"></i>
+    <div class="top-cart-content-wrapper">
+      <div class="top-cart-content">
+        <ul class="scroller" style="height:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+          <li ng-repeat="item in cart.line_items">
+            <img src="" width="37px" height="37px">
+            <span class="cart-content-count">x {{ item.quantity }}</span>
+            <strong>{{ item.name }}</strong>
+          </li>
+        </ul>
+        <div class="text-right">
+          <a href="/uscart" class="btn btn-default">Xem giỏ hàng</a>
+          <a href="/checkout" class="btn btn-primary">Thanh toán ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

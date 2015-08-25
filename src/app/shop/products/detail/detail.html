@@ -1,0 +1,74 @@
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="product-page">
+					<div class="row">
+						<div class="col-md-6">
+							<!-- Images and thumbnail -->
+							<div class="product-main-image">
+								<img src="" ng-src="{{ product.image }}" alt="" class="img-responsive">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- Name -->
+							<h1 style="font-weight:400;text-transform:none;">{{ product.name }}</h1>
+							<div class="price-availability-block clearfix">
+								<div class="price">
+									<span><strong>{{ product.price | exchange:product.currency }}</strong></span>
+									<span>(~{{ product.price }} {{ product.currency }})</span>
+								</div>
+							</div>
+
+							<!-- Short description -->
+							<div class="description">
+								<p>{{ product.short_description }}</p>
+							</div>
+							
+							<form ng-submit="addToCart()">
+								<!-- Options -->
+								<div class="product-page-options">
+									<div class="form-group clearfix" ng-repeat="option in product.options.data | toArray | orderBy: 'position'">
+										<label class="col-md-4 control-label pull-left">{{ option.name }}</label>
+										<div class="col-md-8">
+											<select class="form-control" ng-model="selected[option.position]" ng-options="value.name as value.name for (key, value) in option.values.data" ng-change="buildOption(option.position)" required>
+												<option value="">Chọn {{ option.name }}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<!-- Add to cart -->
+								<div class="product-page-cart">
+	                <div class="product-quantity">
+	                  <input type="number" value="1" class="form-control input-sm" ng-model="quantity" ng-init="quantity=1">
+	                </div>
+	                <div ng-init="isAvailable = false">
+	                	<button class="btn btn-primary" type="submit" ng-disabled="!isAvailable">Thêm vào giỏ</button>
+	                </div>
+		            </div>
+							</form>
+						</div>
+						
+						<!-- Content -->
+						<div class="product-page-content">
+							<ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
+                <li><a href="#Information" data-toggle="tab">Information</a></li>
+                <li><a href="#Reviews" data-toggle="tab">Reviews</a></li>
+	            </ul>
+	            <div id="myTabContent" class="tab-content">
+	            	<!-- Full description -->
+	            	<div class="tab-pane fade in active" id="Description">
+	            		{{ product.full_description }}
+	            	</div>
+	            	<div class="tab-pane fade" id="Information"></div>
+	            	<div class="tab-pane fade" id="Reviews"></div>
+	            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

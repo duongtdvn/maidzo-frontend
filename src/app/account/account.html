@@ -1,0 +1,85 @@
+<div class="main">	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<sidebar></sidebar>
+			</div>
+			<div class="col-md-9">
+				<div class="portlet light shadow">
+					<div class="portlet-title">
+						<div class="caption caption-md">
+              <span class="caption-subject font-blue-madison bold uppercase">Thông tin tài khoản</span>
+            </div>
+					</div>
+					<div class="portlet-body form">
+						<form name="accountForm" class="form-horizontal" ng-submit="updateAccount()" novalidate>
+							<div class="form-body">
+								<!-- Họ -->
+								<div class="form-group">
+                  <label for="first_name" class="control-label col-md-4">
+                    Họ
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="account.first_name" required>
+                  </div>
+                </div>
+
+                <!-- Tên -->
+                <div class="form-group">
+                  <label for="first_name" class="control-label col-md-4">
+                    Tên
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="account.last_name" required>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="first_name" class="control-label col-md-4">
+                    Email
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="account.email" required>
+                  </div>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-group">
+                  <label for="first_name" class="control-label col-md-4">
+                    Mật khẩu
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="password" class="form-control" ng-model="account.password" required>
+                  </div>
+                </div>
+
+                <!-- Xác nhận mật khẩu -->
+                <div class="form-group">
+                  <label for="last_name" class="control-label col-md-4">
+                    Xác nhận mật khẩu
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="password" class="form-control" ng-model="account.password_confirm" required>
+                  </div>
+                </div>
+							</div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-4">
+										<button type="submit" class="btn green" ng-disabled="accountForm.$invalid">Cập nhật thông tin</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,116 @@
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<sidebar></sidebar>
+			</div>
+			<div class="col-md-9">
+				<div class="portlet light shadow">
+					<div class="portlet-body form">
+						<form name="profileForm" class="form-horizontal" ng-submit="updateProfile()">
+							<div class="form-body">
+								<h4 class="form-section">Thông tin cá nhân</h4>
+								<!-- Họ -->
+								<div class="form-group">
+                                    <label for="first_name" class="control-label col-md-4">
+                                        Họ
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="first_name" class="form-control" ng-model="profile.first_name" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <!-- Tên -->
+                                <div class="form-group">
+                                    <label for="first_name" class="control-label col-md-4">
+                                        Tên
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="last_name" class="form-control" ng-model="profile.last_name" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <!-- Ngày sinh -->
+                                <div class="form-group">
+                                    <label for="birth_date" class="control-label col-md-4">
+                                        Ngày sinh
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <datepicker date-format="dd/MM/yyyy">
+                                        	<input ng-model="profile.birth_date" type="text" class="form-control" required>
+                                        </datepicker>
+                                    </div>
+                                </div>
+
+                                <!-- Số điện thoại -->
+                                <div class="form-group">
+                                    <label for="phone" class="control-label col-md-4">
+                                        Số điện thoại
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="phone" class="form-control" ng-model="profile.phone" required>
+                                    </div>
+                                </div>
+
+                                <h4 class="form-section">Địa chỉ liên hệ</h4>
+
+                                <!-- Địa chỉ -->
+                                <div class="form-group">
+                                    <label for="address" class="control-label col-md-4">
+                                        Địa chỉ
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="address" class="form-control" ng-model="profile.address" required>
+                                    </div>
+                                </div>
+
+                                <!-- Tỉnh/Thành phố -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        Tỉnh/Thành phố
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <selectize config="provinceConfig" options="provinces" ng-model="profile.province"></selectize>
+                                    </div>
+                                </div>
+
+                                <!-- Quận/Huyện -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        Quận/Huyện
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <selectize config="districtConfig" options="districts" ng-model="profile.district"></selectize>
+                                    </div>
+                                </div>
+
+                                <!-- Xã/Phường/Thị trấn -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        Xã/Phường/Thị trấn
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <selectize config="wardConfig" options="wards" ng-model="profile.ward"></selectize>
+                                    </div>
+                                </div>
+							</div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-4">
+										<button type="submit" class="btn green" ng-disabled="profileForm.$invalid">Cập nhật thông tin</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
