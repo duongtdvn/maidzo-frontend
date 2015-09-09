@@ -5,7 +5,7 @@
 		.module('Maidzo')
 		.controller('ProductDetailController', ProductDetailController);
 
-	function ProductDetailController ($scope, productData, $filter, $http, config) {
+	function ProductDetailController ($scope, productData, $filter, $http, config, ngCart) {
 		// Fill the product information
 		$scope.product = productData.data.data;
 
@@ -46,7 +46,7 @@
 				// No variant available, disable the add to cart button
 				$scope.isAvailable = false;
 				// temporary log
-				// console.log('no variant available');
+				console.log('no variant available');
 			}
 
 			return variants;
@@ -55,13 +55,18 @@
 		$scope.addToCart = function () {
 			var selectedVariant = variantFilter(selectedOptions);
 
-			// console.log($scope.product.id, selectedVariant[0].id, $scope.quantity);
-
-			$http.post(config.apiUrl + 'shop/carts', {
-				product_id: $scope.product.id,
-				variant_id: selectedVariant[0].id,
-				quantity: $scope.quantity
-			});
+			ngCart.addItem(
+				selectedVariant[0].id,
+				$scope.product.name,
+				selectedVariant[0].price,
+				$scope.product.shipping,
+				$scope.quantity,
+				{
+					product_id: $scope.product.id,
+					options: selectedOptions,
+					currency: $scope.product.currency
+				}
+			);
 		};
 	}
 })();

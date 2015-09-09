@@ -3,24 +3,10 @@
 
 	angular
 		.module('Maidzo')
-		.controller('ProfileController', ProfileController);
+		.controller('CheckoutController', CheckoutController);
 
-	function ProfileController($scope, config, $http, Profile, profileData, toastr) {
-
-		// Pre-fill the profile form
-		$scope.profile = profileData.data;
-
-		// Update profile with data
-		$scope.updateProfile = function() {
-			Profile
-				.updateProfile($scope.profile)
-				.then(function() {
-					toastr.success('Thay đổi thông tin thành công!');
-				})
-				.catch(function() {
-					toastr.error('Có lỗi xảy, ra vui lòng kiểm tra lại!');
-				});
-		};
+	function CheckoutController (ngCart, profileData, config, $scope, $http, toastr, $state) {
+		$scope.profile = profileData.data.data;
 
 		// build map selection
 		$http.get(config.apiUrl + 'map/provinces')
@@ -65,5 +51,31 @@
 			placeholder: 'Pick something',
 			maxItems: 1
 		};
+
+		// Redirect to homepage if cart is empty
+		if (ngCart.getTotalItems() === 0) {
+			$state.go('home')
+		};
+
+		// Define the items
+		var items = ngCart.getCart().items;
+
+		$scope.checkoutSuccess = false;
+
+		// Let's place order
+		$scope.checkout = function() {
+			$http.post(config.apiUrl + 'shop/orders', {
+				items: items,
+				customer: $scope.profile,
+				payment: $scope.paymentType
+			})
+			.then(function(response) {
+				// ngCart.empty();
+				$scope.checkoutSuccess = true;
+				$scope.order = response.data.order;
+			}, function() {
+				toastr.error('Có lỗi xảy, ra vui lòng kiểm tra lại!')
+			})
+		}
 	}
 })();

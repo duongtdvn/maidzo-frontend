@@ -6,12 +6,16 @@
     .config(config);
 
   /** @ngInject */
-  function config($locationProvider, $authProvider, RestangularProvider, toastr) {
+  function config($locationProvider, $authProvider, RestangularProvider, localStorageServiceProvider, cfpLoadingBarProvider, toastr) {
     // Enable html5mode
     $locationProvider.html5Mode(true);
 
     // API base url
     $authProvider.baseUrl = 'http://maidzo.dev:8000/api/';
+    $authProvider.tokenPrefix = 'maidzo';
+
+    // Local storage prefix
+    localStorageServiceProvider.setPrefix('maidzo');
 
     // RestAngular API base url
     RestangularProvider.setBaseUrl('http://maidzo.dev:8000/api/');
@@ -28,6 +32,10 @@
 
       return extractedData;
     });
+
+    // Configuration for angular loading bar
+    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.spinnerTemplate = '<div class="loader-logo"></div><div class="loader"></div>';
 
     // Set options third-party lib
     toastr.options.timeOut = 3000;

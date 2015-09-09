@@ -93,7 +93,6 @@
         controller: 'ProductDetailController',
         resolve: {
           productData: function($stateParams, Product) {
-            // return Restangular.one('shop/products/' + $stateParams.slug).get({include: 'options.values,variants'});
             return Product.getDetail($stateParams.slug, 'options.values,variants');
           }
         },
@@ -115,14 +114,23 @@
         url: '/cart',
         templateUrl: 'app/shop/cart/cart.html',
         controller: 'CartController',
+        data: {
+          authenticate: true,
+          pageTitle: 'Giỏ hàng'
+        }
+      })
+      .state('shop.checkout', {
+        url: '/checkout',
+        templateUrl: 'app/shop/checkout/checkout.html',
+        controller: 'CheckoutController',
         resolve: {
-          cartData: function(Cart) {
-            return Cart.getCart();
+          profileData: function(Profile) {
+            return Profile.getProfile();
           }
         },
         data: {
           authenticate: true,
-          pageTitle: 'Giỏ hàng'
+          pageTitle: 'Thanh toán'
         }
       });
 

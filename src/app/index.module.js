@@ -13,6 +13,9 @@
       'selectize',
       '720kb.datepicker',
       'LocalStorageModule',
-      'angular.filter'
+      'angular.filter',
+      'ngCart',
+      'angular-loading-bar',
+      'ngAnimate'
     ]);
 })();

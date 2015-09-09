@@ -1,0 +1,275 @@
+<div class="main">
+	<div class="container">
+		<div ng-show="!checkoutSuccess">
+			<div class="row margin-bottom-20">
+				<div class="col-md-6">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption">
+		            <span class="caption-subject font-blue-madison uppercase">Thông tin thanh toán</span>
+		          </div>
+						</div>
+						<div class="portlet-body form">
+							<div class="form-body">
+								<form name="checkoutForm" class="">
+									<div class="row">
+										<div class="col-md-6">
+											<!-- First name -->
+											<div class="form-group">
+			                  <label for="first_name" class="control-label">
+			                    Họ
+			                    <span class="required">*</span>
+			                  </label>
+			                  <input type="text" class="form-control" ng-model="profile.first_name" required>
+			                </div>
+
+			                <!-- Last name -->
+			                <div class="form-group">
+			                  <label for="first_name" class="control-label">
+			                    Tên
+			                    <span class="required">*</span>
+			                  </label>
+			                  <input type="text" class="form-control" ng-model="profile.last_name" required>
+			                </div>
+
+			                <!-- Phone -->
+			                <div class="form-group">
+			                  <label for="first_name" class="control-label">
+			                    Số điện thoại
+			                    <span class="required">*</span>
+			                  </label>
+			                  <input type="text" class="form-control" ng-model="profile.phone" required>
+			                </div>
+										</div>
+										<div class="col-md-6">
+											<!-- Địa chỉ -->
+	                    <div class="form-group">
+	                        <label for="address" class="control-label">
+	                            Địa chỉ
+	                            <span class="required">*</span>
+	                        </label>
+	                        <input type="text" id="address" class="form-control" ng-model="profile.address" required>
+	                    </div>
+
+	                    <!-- Tỉnh/Thành phố -->
+	                    <div class="form-group">
+	                        <label class="control-label">
+	                            Tỉnh/Thành phố
+	                            <span class="required">*</span>
+	                        </label>
+	                        <selectize config="provinceConfig" options="provinces" ng-model="profile.province"></selectize>
+	                    </div>
+
+	                    <!-- Quận/Huyện -->
+	                    <div class="form-group">
+	                        <label class="control-label">
+	                            Quận/Huyện
+	                            <span class="required">*</span>
+	                        </label>
+	                        <selectize config="districtConfig" options="districts" ng-model="profile.district"></selectize>
+	                    </div>
+
+	                    <!-- Xã/Phường/Thị trấn -->
+	                    <div class="form-group">
+	                        <label class="control-label">
+	                            Xã/Phường/Thị trấn
+	                            <span class="required">*</span>
+	                        </label>
+	                        <selectize config="wardConfig" options="wards" ng-model="profile.ward"></selectize>
+	                    </div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption">
+		            <span class="caption-subject font-blue-madison uppercase">Hình thức thanh toán</span>
+		          </div>
+						</div>
+						<div class="portlet-body">
+							<div class="radio-list text-center margin-bottom-10" ng-init="paymentType = 'bankTransfer'">
+								<label class="radio-inline">
+								<input type="radio" ng-model="paymentType" value="payByCash"> Thanh toán trực tiếp </label>
+								<label class="radio-inline">
+								<input type="radio" ng-model="paymentType" value="bankTransfer" checked> Chuyển khoản ngân hàng </label>
+							</div>
+							
+							<!-- Bank transfer -->
+							<div ng-show="paymentType === 'bankTransfer'">
+								<!-- Vietcombank -->
+								<div class="panel panel-info">
+								  <div class="panel-heading">Vietcombank</div>
+								  <div class="panel-body">
+								    <div class="row static-info">
+		                  <div class="col-md-3 name">
+		                    Chủ tài khoản:
+		                  </div>
+		                  <div class="col-md-9 value">
+		                    Nguyễn Đức Giang
+		                  </div>
+		                </div>
+
+		                <div class="row static-info">
+		                  <div class="col-md-3 name">
+		                    Số tài khoản:
+		                  </div>
+		                  <div class="col-md-9 value">
+		                    030 1000 326 259
+		                  </div>
+		                </div>
+								  </div>
+								</div>
+
+								<!-- Techcombank -->
+								<div class="panel panel-info">
+								  <div class="panel-heading">Techcombank</div>
+								  <div class="panel-body">
+								    <div class="row static-info">
+		                  <div class="col-md-3 name">
+		                    Chủ tài khoản:
+		                  </div>
+		                  <div class="col-md-9 value">
+		                    Nguyễn Đức Giang
+		                  </div>
+		                </div>
+
+		                <div class="row static-info">
+		                  <div class="col-md-3 name">
+		                    Số tài khoản:
+		                  </div>
+		                  <div class="col-md-9 value">
+		                    190 281 189 71 011
+		                  </div>
+		                </div>
+								  </div>
+								</div>
+							</div>
+							
+							<!-- Pay by cash -->
+							<div ng-show="paymentType === 'payByCash'">
+								<div class="panel panel-info">
+								  <div class="panel-heading">Địa chỉ thanh toán</div>
+								  <div class="panel-body">
+								    <address>
+	                    <strong>Mạidzô</strong><br>
+	                    Tầng 2, 102 Ngụy Như Kon Tum<br>
+	                    Nhân Chính, Thanh Xuân, Hà Nội<br>
+	                    <abbr title="Phone">P:</abbr> 0466833354<br>
+	                    <abbr title="Hotline">H:</abbr> 01693382222
+	                  </address>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ngcart-cart template-url="app/components/cart/cart.html"></ngcart-cart>
+
+	    <div class="clearfix">
+	      <button type="button" class="btn btn-primary pull-right" ng-click="checkout()">Tạo đơn hàng</button>
+	    </div>
+		</div>
+		
+		<div ng-show="checkoutSuccess">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption">
+		            <span class="caption-subject font-blue-madison uppercase">Tạo đơn thành công</span>
+		          </div>
+						</div>
+						<div class="portlet-body">
+							<p class="lead">Chúc mừng bạn đã tạo thành công đơn hàng số #{{ order.id }}. Vui lòng thực hiện thanh toán theo hướng dẫn dưới đây:</p>
+							<div class="row">
+								<div class="col-md-6">
+                  <div class="portlet light">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-puzzle font-grey-gallery"></i>
+                        <span class="caption-subject bold font-grey-gallery uppercase">Vietcombank</span>
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                      <div class="row static-info">
+                        <div class="col-md-3 name">
+                          Chủ tài khoản:
+                        </div>
+                        <div class="col-md-9 value">
+                          Nguyễn Đức Giang
+                        </div>
+                      </div>
+
+                      <div class="row static-info">
+                        <div class="col-md-3 name">
+                          Số tài khoản:
+                        </div>
+                        <div class="col-md-9 value">
+                          030 1000 326 259
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="portlet light">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-puzzle font-grey-gallery"></i>
+                        <span class="caption-subject bold font-grey-gallery uppercase">Techcombank</span>
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                      <div class="row static-info">
+                        <div class="col-md-3 name">
+                          Chủ tài khoản:
+                        </div>
+                        <div class="col-md-9 value">
+                          Nguyễn Đức Giang
+                        </div>
+                      </div>
+
+                      <div class="row static-info">
+                        <div class="col-md-3 name">
+                          Số tài khoản:
+                        </div>
+                        <div class="col-md-9 value">
+                          190 281 189 71 011
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="portlet light">
+                  	<div class="portlet-title">
+                  		<div class="caption">
+                        <i class="icon-puzzle font-grey-gallery"></i>
+                        <span class="caption-subject bold font-grey-gallery uppercase">Trực tiếp</span>
+                      </div>
+                  	</div>
+                    <div class="portlet-body">
+                      <address>
+                        <strong>Mạidzô</strong><br>
+                        Tầng 2, 102 Ngụy Như Kon Tum<br>
+                        Nhân Chính, Thanh Xuân, Hà Nội<br>
+                        <abbr title="Phone">P:</abbr> 0466833354<br>
+                        <abbr title="Hotline">H:</abbr> 01693382222
+                      </address>
+                    </div>
+                  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

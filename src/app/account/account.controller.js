@@ -7,7 +7,7 @@
 
 	function AccountController($scope, config, Account, accountData, toastr) {
 
-		$scope.account = accountData.data.data;
+		$scope.account = accountData.data;
 
 		$scope.updateAccount = function() {
 			Account

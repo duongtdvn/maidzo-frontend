@@ -1,20 +1,93 @@
-<div class="top-cart-block">
-  <div class="top-cart-info">
-    <a href="javascript:void(0);" class="top-cart-info-count">{{ total_items }} sản phẩm</a>
-    <a href="javascript:void(0);" class="top-cart-info-value">{{ total_price() }}</a>
-    <i class="fa fa-shopping-cart"></i>
-    <div class="top-cart-content-wrapper">
-      <div class="top-cart-content">
-        <ul class="scroller" style="height:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-          <li ng-repeat="item in cart.line_items">
-            <img src="" width="37px" height="37px">
-            <span class="cart-content-count">x {{ item.quantity }}</span>
-            <strong>{{ item.name }}</strong>
-          </li>
-        </ul>
-        <div class="text-right">
-          <a href="/uscart" class="btn btn-default">Xem giỏ hàng</a>
-          <a href="/checkout" class="btn btn-primary">Thanh toán ngay</a>
+<div class="row" ng-show="ngCart.getTotalItems() > 0">
+  <div class="col-md-12">
+    <div class="goods-page">
+      <div class="goods-data clearfix">
+        <div class="portlet light">
+          <div class="portlet-title">
+            <div class="caption">
+              <span class="caption-subject font-blue-madison uppercase">Thông tin giỏ hàng</span>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <td class="col-md-1">Ảnh SP</td>
+                        <td class="goods-page-description col-md-4">Thông Tin</td>
+                        <td class="goods-page-quantity col-md-1">Số Lượng</td>
+                        <td class="goods-page-price col-md-1">Đơn Giá</td>
+                        <td class="goods-page-price col-md-1">Phí Vc</td>
+                        <td class="goods-page-total col-md-1">Tổng Giá</td>
+                        <td class="col-md-1"></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="item in ngCart.getCart().items">
+                        <!-- Item thumbnail -->
+                        <td>
+                          <a class="product-thumbnail" href="">
+                            <img src="" alt="{{ item.getName() }}" class="img-thumbnail">
+                          </a>
+                        </td>
+                        <!-- Item info -->
+                        <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                          <!-- name -->
+                          <a target="_blank" href="" title="{{ item.getName() }}">{{ item.getName() }}</a>
+                          <!-- options list -->
+                          <ul class="list-inline">
+                            <li ng-repeat="option in item.getData().options">{{ option }}</li>
+                          </ul>
+                        </td>
+                        <!-- quantity -->
+                        <td>
+                          <div class="product-quantity text-center">
+                            <a ng-class="{'disabled':item.getQuantity()==1}" class="pull-left" ng-click="item.setQuantity(-1, true)">
+                              <span class="fa fa-minus"></span>
+                            </a>
+                            {{ item.getQuantity() }}
+                            <a ng-click="item.setQuantity(1, true)" class="pull-right">
+                              <span class="fa fa-plus"></span>
+                            </a>
+                          </div>
+                        </td>
+                        <!-- price -->
+                        <td class="goods-page-price">
+                            {{ item.getPrice() | currency:item.getData().currency }}
+                        </td>
+                        <!-- shipping -->
+                        <td class="goods-page-price">
+                            {{ item.getItemShip() | currency:item.getData().currency }}
+                        </td>
+                        <!-- sub total -->
+                        <td class="item-total">
+                          {{ item.getTotal() | currency:item.getData().currency }}
+                        </td>
+                        <td class="del-goods-col text-right">
+                          <a title="Xóa khỏi giỏ" href="" ng-click="ngCart.removeItemById(item.getId())">[Xóa]</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shopping-total">
+          <ul>
+            <li>
+              <em>Tổng đơn hàng <small>(chưa tính phí DV)</small></em>
+              <strong class="price">{{ ngCart.totalCost() | currency:'cny' }}</strong>
+            </li>
+            <li>
+              <em>Tổng đơn hàng VND <small>(chưa tính phí DV)</small></em>
+              <strong class="price">{{ ngCart.totalCost() | exchange:'cny' }}</strong>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
