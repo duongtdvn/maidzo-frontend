@@ -11,14 +11,14 @@
     $locationProvider.html5Mode(true);
 
     // API base url
-    $authProvider.baseUrl = 'http://maidzo.dev:8000/api/';
+    $authProvider.baseUrl = 'http://api.maidzo.dev:8000/';
     $authProvider.tokenPrefix = 'maidzo';
 
     // Local storage prefix
     localStorageServiceProvider.setPrefix('maidzo');
 
     // RestAngular API base url
-    RestangularProvider.setBaseUrl('http://maidzo.dev:8000/api/');
+    RestangularProvider.setBaseUrl('http://api.maidzo.dev:8000/');
 
     // Because all of our API response grouped in a 'data' object, so we will need to extract it out
     RestangularProvider.addResponseInterceptor(function(data, operation) {

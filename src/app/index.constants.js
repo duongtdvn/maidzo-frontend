@@ -9,7 +9,7 @@
     .constant('moment', moment)
     .constant('config', {
 			appName: 'Maidzo',
-			apiUrl: 'http://maidzo.dev:8000/api/',
+			apiUrl: 'http://api.maidzo.dev:8000/',
 			exchangeRate: {
 				USD: {
 					amount: 21800,
